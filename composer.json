@@ -1,5 +1,5 @@
 {
-    "name": "tedivm/stash-bundle",
+    "name": "naroga/stash-bundle",
     "type": "symfony-bundle",
     "description": "Incorporates the Stash caching library into Symfony.",
     "keywords": [
@@ -27,9 +27,9 @@
     "require": {
         "php": "^7.0",
         "tedivm/stash": "^0.15",
-        "symfony/config": "^3.4 || ^4.0",
-        "symfony/http-kernel": "^3.4 || ^4.0",
-        "symfony/dependency-injection": "^3.4 || ^4.0"
+        "symfony/config": "^2.8 || ^3.4 || ^4.0",
+        "symfony/http-kernel": "^2.8 || ^3.4 || ^4.0",
+        "symfony/dependency-injection": "^2.8 || ^3.4 || ^4.0"
     },
     "config": {
         "vendor-dir": "vendor",
