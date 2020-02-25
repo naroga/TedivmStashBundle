@@ -14,7 +14,7 @@ namespace Tedivm\StashBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ChildDefinition;
+use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Config\FileLocator;
@@ -88,7 +88,7 @@ class TedivmStashExtension extends Extension
         unset($cache['registerSessionHandler']);
 
         $container
-            ->setDefinition(sprintf('stash.driver.%s_cache', $name), new ChildDefinition('stash.driver'))
+            ->setDefinition(sprintf('stash.driver.%s_cache', $name), new DefinitionDecorator('stash.driver'))
             ->setArguments(
                 [
                     $drivers,
@@ -98,7 +98,7 @@ class TedivmStashExtension extends Extension
             ->setAbstract(false);
 
         $container
-            ->setDefinition(sprintf('stash.tracker.%s_cache', $name), new ChildDefinition('stash.tracker'))
+            ->setDefinition(sprintf('stash.tracker.%s_cache', $name), new DefinitionDecorator('stash.tracker'))
             ->setArguments(
                 [
                     $name,
@@ -108,7 +108,7 @@ class TedivmStashExtension extends Extension
             ->addMethodCall('enableQueryValueLogging', [$logQueryValues])
             ->setAbstract(false);
 
-        $cacheDefinition = new ChildDefinition('stash.cache');
+        $cacheDefinition = new DefinitionDecorator('stash.cache');
         $container
             ->setDefinition(sprintf('stash.%s_cache', $name), $cacheDefinition)
             ->setArguments(
@@ -128,7 +128,7 @@ class TedivmStashExtension extends Extension
             $container
                 ->setDefinition(
                     sprintf('stash.adapter.doctrine.%s_cache', $name),
-                    new ChildDefinition('stash.adapter.doctrine')
+                    new DefinitionDecorator('stash.adapter.doctrine')
                 )
                 ->setArguments(
                     [
@@ -142,7 +142,7 @@ class TedivmStashExtension extends Extension
             $container
                 ->setDefinition(
                     sprintf('stash.adapter.session.%s_cache', $name),
-                    new ChildDefinition('stash.adapter.session')
+                    new DefinitionDecorator('stash.adapter.session')
                 )
                 ->setArguments(
                     [
